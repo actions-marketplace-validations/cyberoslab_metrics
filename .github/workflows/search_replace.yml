@@ -3,7 +3,7 @@ name: Search and Replace
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   search_replace:
@@ -16,10 +16,11 @@ jobs:
       - name: Search and Replace
         run: |
           # Add any file extensions you want to search and replace
+          file_extensions=".txt .md"
 
           # Replace the search string and replace string with your desired values
           search_string="lowlighter"
-          replace_string="w3security"
+          replace_string="s3security"
 
           # Find and replace in each file
           find_replace() {
@@ -27,6 +28,13 @@ jobs:
             echo "Processing file: $file"
             sed -i "s/$search_string/$replace_string/g" "$file"
           }
+
+          # Find and replace in specified file extensions
+          for extension in $file_extensions; do
+            find . -name "*$extension" -type f | while read -r file; do
+              find_replace "$file"
+            done
+          done
 
       - name: Commit and Push Changes
         run: |
