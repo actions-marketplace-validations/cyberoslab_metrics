@@ -1,36 +1,14 @@
-name: Search and Replace
-
-on:
-  push:
-    branches-ignore:
-      - master
-
+name: My Workflow
+on: [push, pull_request]
 jobs:
-  search_replace:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Fetch All Branches
-        run: |
-          git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-          git fetch --all
-
-      - name: Search and Replace
-        run: |
-          # Replace the search string and replace string with your desired values
-          search_string="lowlighter"
-          replace_string="cyberoslab"
-
-          # Find and replace in each file
-          find . -type f ! -path "./.git/*" -exec bash -c 'file="$0"; echo "Processing file: $file"; sed -i "s/$search_string/$replace_string/g" "$file"' {} \;
-
-      - name: Commit and Push Changes
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add -A
-          git commit -m "Perform search and replace using GitHub Actions"
-          git push
+      - uses: actions/checkout@v2
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "lighthouse"
+          replace: "cyberoslab"
+          include: "**/**"
+          regex: true
