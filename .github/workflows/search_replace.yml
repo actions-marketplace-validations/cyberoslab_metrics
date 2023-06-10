@@ -2,7 +2,7 @@ name: Search and Replace
 
 on:
   push:
-    branches:
+    branches-ignore:
       - master
 
 jobs:
@@ -13,11 +13,16 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Fetch All Branches
+        run: |
+          git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+          git fetch --all
+
       - name: Search and Replace
         run: |
           # Replace the search string and replace string with your desired values
-          search_string="search_text"
-          replace_string="replace_text"
+          search_string="lowlighter"
+          replace_string="cyberoslab"
 
           # Find and replace in each file
           find_replace() {
@@ -26,8 +31,12 @@ jobs:
             sed -i "s/$search_string/$replace_string/g" "$file"
           }
 
-          # Find and replace in all files
-          find . -type f ! -path "./.git/*" -exec bash -c 'find_replace "$0"' {} \;
+          # Find and replace in all branches
+          branches=$(git branch -r | grep -v '\->' | sed -E 's/origin\///')
+          for branch in $branches; do
+            git checkout -f "$branch"
+            find . -type f ! -path "./.git/*" -exec bash -c 'find_replace "$0"' {} \;
+          done
 
       - name: Commit and Push Changes
         run: |
