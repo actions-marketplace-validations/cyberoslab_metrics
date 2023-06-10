@@ -3,7 +3,7 @@ name: Search and Replace
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   search_replace:
