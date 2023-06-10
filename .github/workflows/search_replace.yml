@@ -25,18 +25,7 @@ jobs:
           replace_string="cyberoslab"
 
           # Find and replace in each file
-          find_replace() {
-            file="$1"
-            echo "Processing file: $file"
-            sed -i "s/$search_string/$replace_string/g" "$file"
-          }
-
-          # Find and replace in all branches
-          branches=$(git branch -r | grep -v '\->' | sed -E 's/origin\///')
-          for branch in $branches; do
-            git checkout -f "$branch"
-            find . -type f ! -path "./.git/*" -exec bash -c 'find_replace "$0"' {} \;
-          done
+          find . -type f ! -path "./.git/*" -exec bash -c 'file="$0"; echo "Processing file: $file"; sed -i "s/$search_string/$replace_string/g" "$file"' {} \;
 
       - name: Commit and Push Changes
         run: |
