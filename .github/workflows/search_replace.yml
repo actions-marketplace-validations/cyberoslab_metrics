@@ -20,7 +20,7 @@ jobs:
 
           # Replace the search string and replace string with your desired values
           search_string="lowlighter"
-          replace_string="s3security"
+          replace_string="cyberoslab"
 
           # Find and replace in each file
           find_replace() {
