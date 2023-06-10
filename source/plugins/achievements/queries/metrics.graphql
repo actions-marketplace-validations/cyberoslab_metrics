@@ -1,5 +1,5 @@
 query AchievementsMetrics {
- 	repository(owner: "lowlighter", name: "metrics") {
+ 	repository(owner: "cyberoslab", name: "metrics") {
     viewerHasStarred
   }
   viewer {

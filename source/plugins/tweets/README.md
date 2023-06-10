@@ -19,8 +19,8 @@ All product and company names are trademarks™ or registered® trademarks of th
   </tr>
   <tr>
     <td colspan="2" align="center">
-      <details open><summary>Latest tweets with attachments</summary><img src="https://github.com/lowlighter/metrics/blob/examples/metrics.plugin.tweets.attachments.svg" alt=""></img></details>
-      <details><summary>Latest tweets</summary><img src="https://github.com/lowlighter/metrics/blob/examples/metrics.plugin.tweets.svg" alt=""></img></details>
+      <details open><summary>Latest tweets with attachments</summary><img src="https://github.com/cyberoslab/metrics/blob/examples/metrics.plugin.tweets.attachments.svg" alt=""></img></details>
+      <details><summary>Latest tweets</summary><img src="https://github.com/cyberoslab/metrics/blob/examples/metrics.plugin.tweets.svg" alt=""></img></details>
       <img width="900" height="1" alt="">
     </td>
   </tr>
@@ -110,7 +110,7 @@ Create an app from the [developer dashboard](https://developer.twitter.com/en/po
 <!--examples-->
 ```yaml
 name: Latest tweets
-uses: lowlighter/metrics@latest
+uses: cyberoslab/metrics@latest
 with:
   filename: metrics.plugin.tweets.svg
   token: NOT_NEEDED
@@ -122,7 +122,7 @@ with:
 ```
 ```yaml
 name: Latest tweets including attachments
-uses: lowlighter/metrics@latest
+uses: cyberoslab/metrics@latest
 with:
   filename: metrics.plugin.tweets.attachments.svg
   token: NOT_NEEDED
