@@ -10,5 +10,5 @@ jobs:
         with:
           find: "lighthouse"
           replace: "cyberoslab"
-          include: "**/**"
+          include: ".*"
           regex: true
