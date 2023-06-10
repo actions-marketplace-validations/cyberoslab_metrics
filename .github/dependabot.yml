@@ -9,7 +9,7 @@ updates:
     pull-request-branch-name:
       separator: "-"
     reviewers:
-      - lowlighter
+      - cyberoslab
     commit-message:
       prefix: "chore(deps)"
     ignore:

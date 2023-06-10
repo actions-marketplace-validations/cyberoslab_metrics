@@ -1,5 +1,5 @@
 - name: 🌇 GitHub Skyline - GitHub Skyline
-  uses: lowlighter/metrics@latest
+  uses: cyberoslab/metrics@latest
   with:
     token: NOT_NEEDED
     plugin_skyline: 'yes'
@@ -12,7 +12,7 @@
   modes:
     - action
 - name: 🌇 GitHub Skyline - GitHub City
-  uses: lowlighter/metrics@latest
+  uses: cyberoslab/metrics@latest
   with:
     token: NOT_NEEDED
     plugin_skyline: 'yes'
