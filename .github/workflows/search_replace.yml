@@ -15,26 +15,19 @@ jobs:
 
       - name: Search and Replace
         run: |
-          # Add any file extensions you want to search and replace
-          file_extensions=".txt .md"
-
           # Replace the search string and replace string with your desired values
-          search_string="lowlighter"
-          replace_string="cyberoslab"
+          search_string="search_text"
+          replace_string="replace_text"
 
           # Find and replace in each file
           find_replace() {
             file="$1"
             echo "Processing file: $file"
-            sed -i "s/lowlighter/cyberoslab/g"
+            sed -i "s/$search_string/$replace_string/g" "$file"
           }
 
-          # Find and replace in specified file extensions
-          for extension in $file_extensions; do
-            find . -name "*$extension" -type f | while read -r file; do
-              find_replace "$file"
-            done
-          done
+          # Find and replace in all files
+          find . -type f ! -path "./.git/*" -exec bash -c 'find_replace "$0"' {} \;
 
       - name: Commit and Push Changes
         run: |
